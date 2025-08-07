@@ -1,14 +1,20 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import './HotelBooking.css';
 import { fetchYachts } from '../api/yacht';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../contexts/LanguageContext';
+=======
+import React, { useState } from 'react';
+import './HotelBooking.css';
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
 
 interface Props {
   goHome?: () => void;
   showNotification?: (message: string, type?: 'success' | 'error' | 'info') => void;
 }
 
+<<<<<<< HEAD
 // بيانات تجريبية لليخوت
 const mockYachts = [
   {
@@ -85,6 +91,57 @@ const mockYachts = [
 
 const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
   const { t } = useLanguage();
+=======
+const yachts = [
+  {
+    id: 1,
+    name: 'يخت النخيل الذهبي',
+    location: 'شرم الشيخ، البحر الأحمر',
+    rating: 4.9,
+    price: 2500,
+    capacity: 12,
+    description: 'يخت فاخر مع طاقم محترف وإطلالات رائعة على البحر الأحمر',
+    amenities: ['طاقم محترف', 'معدات غوص', 'معدات صيد', 'مطعم', 'بار', 'غرف نوم فاخرة'],
+    images: [
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80',
+      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80',
+    ],
+  },
+  {
+    id: 2,
+    name: 'يخت المرجان الأزرق',
+    location: 'دهب، جنوب سيناء',
+    rating: 4.7,
+    price: 1800,
+    capacity: 8,
+    description: 'يخت متوسط الحجم مثالي للرحلات العائلية والجولات السياحية',
+    amenities: ['طاقم محترف', 'معدات غوص', 'مطعم', 'بار', 'غرف نوم مريحة'],
+    images: [
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80',
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80',
+      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80',
+    ],
+  },
+  {
+    id: 3,
+    name: 'يخت اللؤلؤ الأبيض',
+    location: 'الغردقة، البحر الأحمر',
+    rating: 4.5,
+    price: 1200,
+    capacity: 6,
+    description: 'يخت صغير ومريح للرحلات القصيرة والجولات النهارية',
+    amenities: ['طاقم محترف', 'معدات غوص', 'مطعم', 'بار'],
+    images: [
+      'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80',
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80',
+    ],
+  },
+];
+
+const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
   const [selectedYacht, setSelectedYacht] = useState<typeof yachts[0] | null>(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -93,9 +150,12 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
   const [hours, setHours] = useState(4);
   const [guests, setGuests] = useState(4);
   const [isSubmitting, setIsSubmitting] = useState(false);
+<<<<<<< HEAD
   const [yachts, setYachts] = useState<any[]>([]);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [bookingId, setBookingId] = useState<string>('');
+=======
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
 
   // بحث وفلاتر
   const [search, setSearch] = useState('');
@@ -107,6 +167,7 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
   const [sortBy, setSortBy] = useState('');
 
   // استخراج المدن المتاحة
+<<<<<<< HEAD
   const cities = Array.from(new Set(yachts.map(y => y.location?.split(',')[0]?.trim() || '').filter(city => city)));
   // استخراج السعات المتاحة
   const capacities = Array.from(new Set(yachts.map(y => y.capacity || 0))).sort((a, b) => a - b);
@@ -137,6 +198,16 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
   let filteredYachts = yachts.filter(yacht => {
     const matchesSearch = (yacht.name?.includes(search) || yacht.location?.includes(search)) || false;
     const matchesCity = filterCity ? yacht.location?.startsWith(filterCity) : true;
+=======
+  const cities = Array.from(new Set(yachts.map(y => y.location.split('،')[0].trim())));
+  // استخراج السعات المتاحة
+  const capacities = Array.from(new Set(yachts.map(y => y.capacity))).sort((a, b) => a - b);
+
+  // تصفية اليخوت
+  let filteredYachts = yachts.filter(yacht => {
+    const matchesSearch = yacht.name.includes(search) || yacht.location.includes(search);
+    const matchesCity = filterCity ? yacht.location.startsWith(filterCity) : true;
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
     const matchesRating = filterRating ? yacht.rating >= Number(filterRating) : true;
     const matchesPrice = filterPrice ? yacht.price <= Number(filterPrice) : true;
     const matchesCapacity = filterCapacity ? yacht.capacity >= Number(filterCapacity) : true;
@@ -155,6 +226,7 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
     e.preventDefault();
     setIsSubmitting(true);
     
+<<<<<<< HEAD
     try {
       // محاكاة إرسال البيانات
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -183,6 +255,15 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
     } finally {
       setIsSubmitting(false);
     }
+=======
+    // محاكاة إرسال البيانات
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    if (showNotification) {
+      showNotification(`تم إرسال طلب الحجز ليخت ${selectedYacht?.name} بنجاح! سنتواصل معك قريباً.`, 'success');
+    }
+    setIsSubmitting(false);
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
   };
 
   const renderStars = (rating: number) => {
@@ -196,6 +277,7 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
     }
   };
 
+<<<<<<< HEAD
   if (bookingConfirmed) {
     return (
       <div className="home-container">
@@ -278,6 +360,8 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
     );
   }
 
+=======
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
   if (!selectedYacht) {
     return (
       <div className="home-container">
@@ -378,7 +462,11 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
                   <span className="capacity-tag">👥 السعة: {yacht.capacity} أشخاص</span>
                 </div>
                 <div className="hotel-amenities">
+<<<<<<< HEAD
                   {yacht.amenities.slice(0, 3).map((amenity: string, index: number) => (
+=======
+                  {yacht.amenities.slice(0, 3).map((amenity, index) => (
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
                     <span key={index} className="amenity-tag">{amenity}</span>
                   ))}
                 </div>
@@ -409,7 +497,11 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
 
       <div className="hotel-details">
       <div className="hotel-gallery">
+<<<<<<< HEAD
         {selectedYacht.images.map((img: string, idx: number) => (
+=======
+        {selectedYacht.images.map((img, idx) => (
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
           <img
             key={idx}
             src={img}
@@ -436,7 +528,11 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
           <div className="hotel-amenities-large">
             <h3>المرافق المتاحة:</h3>
             <div className="amenities-grid">
+<<<<<<< HEAD
               {selectedYacht.amenities.map((amenity: string, index: number) => (
+=======
+              {selectedYacht.amenities.map((amenity, index) => (
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
                 <span key={index} className="amenity-tag-large">✓ {amenity}</span>
               ))}
             </div>
@@ -543,6 +639,7 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
 
         <div className="form-actions">
           <button 
+<<<<<<< HEAD
             className={`home-buttons-btn booking-confirm-btn ${isSubmitting ? 'submitting' : ''}`}
             type="submit"
             disabled={isSubmitting}
@@ -563,15 +660,33 @@ const YachtBooking: React.FC<Props> = ({ goHome, showNotification }) => {
           <button
             type="button"
             className="back-btn"
+=======
+            className="home-buttons-btn" 
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'جاري الإرسال...' : 'تأكيد الحجز'}
+        </button>
+          
+        <button
+          type="button"
+          className="back-btn"
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
             onClick={() => {
               setSelectedYacht(null);
               if (showNotification) {
                 showNotification('تم العودة لاختيار يخت آخر', 'info');
               }
             }}
+<<<<<<< HEAD
           >
             العودة لاختيار يخت آخر
           </button>
+=======
+        >
+          العودة لاختيار يخت آخر
+        </button>
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
         </div>
       </form>
     </div>

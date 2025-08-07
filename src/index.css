@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Import the theme variables and base styles */
 @import './theme/theme.css';
 
@@ -81,11 +82,54 @@ html {
 }
 
 /* Reduced motion preferences */
+=======
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Dark Mode Body */
+body.dark-mode {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* تحسين التمرير */
+html {
+  scroll-behavior: smooth;
+}
+
+/* تحسين التركيز */
+*:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* تحسين الانتقالات */
+* {
+  transition: all 0.3s ease;
+}
+
+/* تحسين الأداء */
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+<<<<<<< HEAD
     scroll-behavior: auto !important;
   }
 }
@@ -104,6 +148,8 @@ html {
   
   .no-print {
     display: none !important;
+=======
+>>>>>>> 2589a0280184534f4e19ab80ae72c546f6c9d5a4
   }
 }
 
